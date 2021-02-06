@@ -13,11 +13,55 @@ const displayCountries = countries => {
         const countryInfo = `
         <h3 class = "country-name">${country.name}</h3>
         <p>${country.capital}</p>
+        <button onclick = "displayCountryDetail('${country.name}')">Details</button>
         `;
 
         countryDiv.innerHTML = countryInfo;
         countriesDiv.appendChild(countryDiv);
     });
+}
+
+const displayCountryDetail = name => {
+    const url = `https://restcountries.eu/rest/v2/name/${name}`
+    // console.log(url);
+    fetch(url)
+        .then(res => res.json())
+        .then(data => renderCountryInfo(data[0]));
+
+}
+const renderCountryInfo = country => {
+    // console.log(country);
+    const countryDiv = document.getElementById("countryDetail")
+    countryDiv.innerHTML = `
+    <h1>${country.name}</h1>
+    <p>Population: ${country.population}</P>
+    <p>Area: ${country.area}</p>  
+    <img src="${country.flag}">  
+    `
+}
+
+
+
+
+
+
+
+
+
+    // const countriesDiv = document.getElementById('countries');          // 3rd Method /
+    // countries.forEach(country => {
+    //     const countryDiv = document.createElement("div");
+
+    //     countryDiv.className = "country"
+
+    //     const countryInfo = `
+    //     <h3 class = "country-name">${country.name}</h3>
+    //     <p>${country.capital}</p>
+    //     `;
+
+    //     countryDiv.innerHTML = countryInfo;
+    //     countriesDiv.appendChild(countryDiv);
+    // });
 
 
 
@@ -57,5 +101,5 @@ const displayCountries = countries => {
     // // countryDiv.innerText = country.name;         //test Case for checking/
     // // countriesDiv.appendChild(li);
     // // console.log(country.name);
-}
+// }
 // }
