@@ -4,7 +4,7 @@ fetch('https://restcountries.eu/rest/v2/all')
 
 const displayCountries = countries => {
     // console.log(countries);      //for checking /
-    const countriesDiv = document.getElementById('countries');
+    const countriesDiv = document.getElementById('countries');          // 3rd Method /
     countries.forEach(country => {
         const countryDiv = document.createElement("div");
 
